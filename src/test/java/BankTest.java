@@ -17,4 +17,13 @@ public class BankTest {
         int result = subject.balance();
         assertEquals(500, result);
     }
+
+    @Test
+    void testWithdrawMoneyDecreasesBalance() {
+        Bank subject = new Bank();
+        subject.deposit(500);
+        subject.withdraw(100);
+        int result = subject.balance();
+        assertEquals(400, result);
+    }
 }
