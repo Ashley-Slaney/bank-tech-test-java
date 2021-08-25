@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -5,25 +6,32 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class BankTest {
     @Test
     void testBalanceStartsEmpty() {
-        Bank subject = new Bank();
-        int result = subject.balance();
+        BankAccount subject = new BankAccount();
+        float result = subject.balance();
         assertEquals(0, result);
     }
 
     @Test
     void testDepositMoneyIncreasesBalance() {
-        Bank subject = new Bank();
+        BankAccount subject = new BankAccount();
         subject.deposit(500);
-        int result = subject.balance();
+        float result = subject.balance();
         assertEquals(500, result);
     }
 
     @Test
+    void testDepositIncorrectAmountReturnsMessage() {
+        BankAccount subject = new BankAccount();
+        Assertions.assertThrows(ArithmeticException.class, () -> subject.deposit(-500));
+    }
+
+    @Test
     void testWithdrawMoneyDecreasesBalance() {
-        Bank subject = new Bank();
+        BankAccount subject = new BankAccount();
         subject.deposit(500);
         subject.withdraw(100);
-        int result = subject.balance();
+        float result = subject.balance();
         assertEquals(400, result);
     }
+
 }
