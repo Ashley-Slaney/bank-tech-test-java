@@ -14,6 +14,9 @@ public class BankAccount {
     }
 
     public void withdraw(float amount) {
+        if (balance - amount < 0) {
+            throw new ArithmeticException("Your balance cannot go below zero.");
+        }
         this.balance -= amount;
     }
 }

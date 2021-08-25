@@ -34,4 +34,9 @@ public class BankTest {
         assertEquals(400, result);
     }
 
+    @Test
+    void testWithdrawCantMakeBalanceGoBelowZero() {
+        BankAccount subject = new BankAccount();
+        Assertions.assertThrows(ArithmeticException.class, () -> subject.withdraw(5000));
+    }
 }

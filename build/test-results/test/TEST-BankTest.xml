@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="BankTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2021-08-25T11:13:57" hostname="MA372.broadband" time="0.03">
+<testsuite name="BankTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-08-25T11:25:10" hostname="MA372.broadband" time="0.038">
   <properties/>
   <testcase name="testDepositMoneyIncreasesBalance()" classname="BankTest" time="0.024"/>
+  <testcase name="testWithdrawCantMakeBalanceGoBelowZero()" classname="BankTest" time="0.004"/>
   <testcase name="testBalanceStartsEmpty()" classname="BankTest" time="0.001"/>
-  <testcase name="testWithdrawMoneyDecreasesBalance()" classname="BankTest" time="0.0"/>
+  <testcase name="testWithdrawMoneyDecreasesBalance()" classname="BankTest" time="0.002"/>
   <testcase name="testDepositIncorrectAmountReturnsMessage()" classname="BankTest" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
