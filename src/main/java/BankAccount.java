@@ -1,5 +1,9 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class BankAccount {
     private float balance = 0;
+    List<Transaction> transactions = new ArrayList<Transaction>();
 
     public float balance() {
         return this.balance;
@@ -9,6 +13,7 @@ public class BankAccount {
         if (amount <= 0) {
             throw new ArithmeticException("Must be a positive amount to deposit.");
         }
+
         this.balance += amount;
         storeTransaction(amount, balance, "deposit");
     }
@@ -19,9 +24,11 @@ public class BankAccount {
         }
 
         this.balance -= amount;
+        storeTransaction(amount, balance, "withdraw");
     }
 
     public void storeTransaction(float amount, float balance, String transactionType) {
         Transaction transaction = new Transaction(amount, balance, transactionType);
+        transactions.add(transaction);
     }
 }
