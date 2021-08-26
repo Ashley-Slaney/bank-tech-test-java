@@ -53,4 +53,12 @@ public class BankAccountTest {
         assertEquals(500, subject.transactions.get(0).getAmount());
         assertEquals("deposit", subject.transactions.get(0).getTransactionType());
     }
+
+    @Test
+    void testCanStoreMultipleTransactions() {
+        subject.deposit(500);
+        subject.deposit(500);
+        subject.deposit(500);
+        assertEquals(1500, subject.transactions.get(2).getBalance());
+    }
 }
