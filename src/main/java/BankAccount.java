@@ -9,8 +9,8 @@ public class BankAccount {
         if (amount <= 0) {
             throw new ArithmeticException("Must be a positive amount to deposit.");
         }
-
         this.balance += amount;
+        storeTransaction(amount, balance, "deposit");
     }
 
     public void withdraw(float amount) {
@@ -19,5 +19,9 @@ public class BankAccount {
         }
 
         this.balance -= amount;
+    }
+
+    public void storeTransaction(float amount, float balance, String transactionType) {
+        Transaction transaction = new Transaction(amount, balance, transactionType);
     }
 }
