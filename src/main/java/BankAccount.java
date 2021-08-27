@@ -31,4 +31,9 @@ public class BankAccount {
         Transaction transaction = new Transaction(amount, balance, transactionType);
         transactions.add(transaction);
     }
+
+    public String printStatement() {
+        Statement statement = new Statement(transactions);
+        return statement.print();
+    }
 }

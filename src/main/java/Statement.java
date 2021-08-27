@@ -1,10 +1,24 @@
-import java.time.format.DateTimeFormatter;
+import java.util.Collections;
+import java.util.List;
 
 public class Statement {
-}
-// format date
-// LocalDate date = LocalDate.now()
-//DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+    List<Transaction> transactions;
+    private String statementHeader = "date || credit || debit || balance";
+    private String output = "";
 
-// logic for getting transaction to a string
-//        transactions.add("\n" + dtf.format(localDate) + " || " + amount + "|| - || " + balance);
+    Statement(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
+    public String print() {
+        Collections.reverse(transactions);
+        transactions.forEach(transaction -> {
+            if (transaction.getTransactionType() == "deposit") {
+                output += "\n" + transaction.getDate() + " || " + transaction.getAmount() + " || - || " + transaction.getBalance();
+            } else {
+                output += "\n" + transaction.getDate() + " || - || " + transaction.getAmount() + " || " + transaction.getBalance();
+            }
+        });
+        return statementHeader + output;
+    }
+}

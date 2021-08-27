@@ -2,17 +2,22 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BankAccountTest {
     private BankAccount subject;
 
+    LocalDate localDate = LocalDate.now();
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+    String date = dtf.format(localDate);
+
     @BeforeEach
     void setup() {
         subject = new BankAccount();
     }
-    LocalDate date = LocalDate.now();
+
 
     @Test
     void testBalanceStartsEmpty() {
@@ -59,6 +64,15 @@ public class BankAccountTest {
         subject.deposit(500);
         subject.deposit(500);
         subject.deposit(500);
-        assertEquals(1500, subject.transactions.get(2).getBalance());
+        subject.withdraw(1000);
+        assertEquals(500, subject.transactions.get(3).getBalance());
+    }
+
+    @Test
+    void testCanPrintAStatement() {
+        subject.deposit(1000);
+        subject.deposit(2000);
+        subject.withdraw(500);
+        assertEquals("date || credit || debit || balance\n" + date + " || - || 500.00 || 2500.00\n" + date +" || 2000.00 || - || 3000.00\n" + date + " || 1000.00 || - || 1000.00", subject.printStatement());
     }
 }
